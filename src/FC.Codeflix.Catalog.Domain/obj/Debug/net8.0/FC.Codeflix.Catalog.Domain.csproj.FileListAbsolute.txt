@@ -1,0 +1,11 @@
+/home/henrique/full cycle/codeflix-admin/src/FC.Codeflix.Catalog.Domain/bin/Debug/net8.0/FC.Codeflix.Catalog.Domain.deps.json
+/home/henrique/full cycle/codeflix-admin/src/FC.Codeflix.Catalog.Domain/bin/Debug/net8.0/FC.Codeflix.Catalog.Domain.dll
+/home/henrique/full cycle/codeflix-admin/src/FC.Codeflix.Catalog.Domain/bin/Debug/net8.0/FC.Codeflix.Catalog.Domain.pdb
+/home/henrique/full cycle/codeflix-admin/src/FC.Codeflix.Catalog.Domain/obj/Debug/net8.0/FC.Codeflix.Catalog.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/henrique/full cycle/codeflix-admin/src/FC.Codeflix.Catalog.Domain/obj/Debug/net8.0/FC.Codeflix.Catalog.Domain.AssemblyInfoInputs.cache
+/home/henrique/full cycle/codeflix-admin/src/FC.Codeflix.Catalog.Domain/obj/Debug/net8.0/FC.Codeflix.Catalog.Domain.AssemblyInfo.cs
+/home/henrique/full cycle/codeflix-admin/src/FC.Codeflix.Catalog.Domain/obj/Debug/net8.0/FC.Codeflix.Catalog.Domain.csproj.CoreCompileInputs.cache
+/home/henrique/full cycle/codeflix-admin/src/FC.Codeflix.Catalog.Domain/obj/Debug/net8.0/FC.Codeflix.Catalog.Domain.dll
+/home/henrique/full cycle/codeflix-admin/src/FC.Codeflix.Catalog.Domain/obj/Debug/net8.0/refint/FC.Codeflix.Catalog.Domain.dll
+/home/henrique/full cycle/codeflix-admin/src/FC.Codeflix.Catalog.Domain/obj/Debug/net8.0/FC.Codeflix.Catalog.Domain.pdb
+/home/henrique/full cycle/codeflix-admin/src/FC.Codeflix.Catalog.Domain/obj/Debug/net8.0/ref/FC.Codeflix.Catalog.Domain.dll
