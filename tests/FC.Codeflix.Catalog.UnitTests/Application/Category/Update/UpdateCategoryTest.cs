@@ -3,6 +3,7 @@ using FluentAssertions;
 using FC.Codeflix.Catalog.Application.UseCases.Category.Update;
 using DomainEntity = FC.Codeflix.Catalog.Domain.Entities;
 using FC.Codeflix.Catalog.Domain.Exceptions;
+using FC.Codeflix.Catalog.Application.Exceptions;
 
 namespace FC.Codeflix.Catalog.UnitTests.Application.Category.Update;
 

@@ -13,11 +13,11 @@ public class BaseFixture
         Faker = new Faker("pt_BR");
     }
 
-    public CodeflixCatalogDbContext CreateDbContext(bool preserveData = false)
+    public CodeflixCatalogDbContext CreateDbContext(bool preserveData = false, string dbId = "")
     {
         var context = new CodeflixCatalogDbContext(
             new DbContextOptionsBuilder<CodeflixCatalogDbContext>()
-                .UseInMemoryDatabase("integration-tests-db")
+                .UseInMemoryDatabase($"integration-tests-db{dbId}")
                 .Options
         );
 
