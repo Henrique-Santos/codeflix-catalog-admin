@@ -27,7 +27,7 @@ public class UnitOfWorkTest
 
         // When
         await uow.Commit(CancellationToken.None);
-        var assertContext = _fixture.CreateDbContext(true);
+        var assertContext = _fixture.CreateDbContext(true, dbId);
         var data = assertContext.Categories.AsNoTracking().ToList();
 
         // Then

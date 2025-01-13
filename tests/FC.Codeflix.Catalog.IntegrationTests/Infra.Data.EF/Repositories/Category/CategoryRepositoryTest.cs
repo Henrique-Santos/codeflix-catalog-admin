@@ -276,7 +276,8 @@ public class CategoryRepositoryTest
     public async Task SearchOrdered(string orderBy, string order)
     {
         // Given
-        var context = _fixture.CreateDbContext();
+        var dbId = Guid.NewGuid().ToString();
+        var context = _fixture.CreateDbContext(dbId: dbId);
         var categories = _fixture.GetExampleCategoriesList(10);
         await context.AddRangeAsync(categories);
         await context.SaveChangesAsync(CancellationToken.None);
