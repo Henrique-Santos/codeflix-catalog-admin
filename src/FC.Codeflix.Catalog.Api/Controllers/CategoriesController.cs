@@ -1,5 +1,8 @@
 using FC.Codeflix.Catalog.Application.UseCases.Category.Common;
 using FC.Codeflix.Catalog.Application.UseCases.Category.Create;
+using FC.Codeflix.Catalog.Application.UseCases.Category.Delete;
+using FC.Codeflix.Catalog.Application.UseCases.Category.Get;
+using FC.Codeflix.Catalog.Application.UseCases.Category.Update;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,5 +28,36 @@ public class CategoriesController : ControllerBase
         var output = await _mediator.Send(input, cancellationToken);
 
         return CreatedAtAction(nameof(Create), new { id = output.Id }, output);
+    }
+
+    [HttpGet("{id:guid}")]
+    [ProducesResponseType(typeof(CategoryOutput), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Get([FromRoute] Guid id, CancellationToken cancellationToken)
+    {
+        var output = await _mediator.Send(new GetCategoryInput(id), cancellationToken);
+
+        return Ok(output);
+    }
+
+    [HttpDelete("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Delete([FromRoute] Guid id, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(new DeleteCategoryInput(id), cancellationToken);
+
+        return NoContent();
+    }
+
+    [HttpPut("{id:guid}")]
+    [ProducesResponseType(typeof(CategoryOutput), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> Update([FromBody] UpdateCategoryInput input, CancellationToken cancellationToken)
+    {
+        var output = await _mediator.Send(input, cancellationToken);
+
+        return Ok(output);
     }
 }

@@ -1,3 +1,4 @@
+using FC.Codeflix.Catalog.Application.Exceptions;
 using FC.Codeflix.Catalog.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -31,7 +32,21 @@ public class ApiGlobalExceptionFilter : IExceptionFilter
             details.Status = StatusCodes.Status422UnprocessableEntity;
             details.Detail = ex!.Message;
         }
-        else 
+        else if (exception is NotFoundException)
+        {
+            details.Title = "Not Found";
+            details.Type = "NotFound";
+            details.Status = StatusCodes.Status404NotFound;
+            details.Detail = exception.Message;
+        }
+        else if (exception is UnauthorizedAccessException)
+        {
+            details.Title = "Unauthorized";
+            details.Type = "Unauthorized";
+            details.Status = StatusCodes.Status401Unauthorized;
+            details.Detail = exception.Message;
+        }
+        else
         {
             details.Title = "An unexpected error occurred.";
             details.Type = "Unexpected";

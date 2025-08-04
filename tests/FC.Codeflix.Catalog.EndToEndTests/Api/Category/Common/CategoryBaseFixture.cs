@@ -1,3 +1,4 @@
+using FC.Codeflix.Catalog.Domain.Entities;
 using FC.Codeflix.Catalog.EndToEndTests.Base;
 using DomainEntity = FC.Codeflix.Catalog.Domain.Entities;
 
@@ -12,12 +13,12 @@ public class CategoryBaseFixture : BaseFixture
         Persistence = new CategoryPersistence(CreateDbContext());
     }
 
-    public DomainEntity.Category GetExampleCategory() 
+    public DomainEntity.Category GetExampleCategory()
     {
         return new(GetValidCategoryName(), GetValidCategoryDescription(), GetRandomBoolean());
     }
 
-    public List<DomainEntity.Category> GetExampleCategoriesList(int length = 10) 
+    public List<DomainEntity.Category> GetExampleCategoriesList(int length = 10)
     {
         return Enumerable.Range(1, length).Select(_ => GetExampleCategory()).ToList();
     }
@@ -30,7 +31,7 @@ public class CategoryBaseFixture : BaseFixture
             category.Update(name);
             return category;
         }).ToList();
-    } 
+    }
 
     public string GetValidCategoryName()
     {
@@ -67,7 +68,7 @@ public class CategoryBaseFixture : BaseFixture
     {
         return LongName();
 
-        string LongName() 
+        string LongName()
         {
             var tooLongNameForCategory = Faker.Commerce.ProductName();
             while (tooLongNameForCategory.Length <= 255)
@@ -82,7 +83,7 @@ public class CategoryBaseFixture : BaseFixture
     {
         return LongDescription();
 
-        string LongDescription() 
+        string LongDescription()
         {
             var tooLongDescriptionForCategory = Faker.Commerce.ProductDescription();
             while (tooLongDescriptionForCategory.Length <= 10_000)

@@ -4,7 +4,7 @@ using DomainEntity = FC.Codeflix.Catalog.Domain.Entities;
 
 namespace FC.Codeflix.Catalog.EndToEndTests.Api.Category.Common;
 
-public class CategoryPersistence 
+public class CategoryPersistence
 {
     private readonly CodeflixCatalogDbContext _context;
 
@@ -16,5 +16,11 @@ public class CategoryPersistence
     public async Task<DomainEntity.Category?> GetById(Guid id)
     {
         return await _context.Categories.AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
+    }
+    
+    public async Task InsertList(List<DomainEntity.Category> categories)
+    {
+        await _context.Categories.AddRangeAsync(categories);
+        await _context.SaveChangesAsync();
     }
 }
