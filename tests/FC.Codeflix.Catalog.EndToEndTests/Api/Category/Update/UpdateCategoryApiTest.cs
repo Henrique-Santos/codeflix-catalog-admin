@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FC.Codeflix.Catalog.EndToEndTests.Api.Category.Update;
 
 [Collection(nameof(UpdateCategoryApiTestFixture))]
-public class UpdateCategoryApiTest
+public class UpdateCategoryApiTest : IDisposable
 {
     private readonly UpdateCategoryApiTestFixture _fixture;
 
@@ -104,5 +104,10 @@ public class UpdateCategoryApiTest
         output.Type.Should().Be("NotFound");
         output.Status.Should().Be(StatusCodes.Status404NotFound);
         output.Detail.Should().Be($"Category '{id}' not found.");
+    }
+
+    public void Dispose()
+    {
+        _fixture.DisposeDbContext();
     }
 }

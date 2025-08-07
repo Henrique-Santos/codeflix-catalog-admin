@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FC.Codeflix.Catalog.EndToEndTests.Api.Category.Delete;
 
 [Collection(nameof(DeleteCategoryApiTestFixture))]
-public class DeleteCategoryApiTest
+public class DeleteCategoryApiTest : IDisposable
 {
     private readonly DeleteCategoryApiTestFixture _fixture;
 
@@ -52,5 +52,10 @@ public class DeleteCategoryApiTest
         output!.Type.Should().Be("NotFound");
         output!.Status.Should().Be(StatusCodes.Status404NotFound);
         output!.Detail.Should().Be($"Category '{id}' not found.");
+    }
+
+    public void Dispose()
+    {
+        _fixture.DisposeDbContext();
     }
 }

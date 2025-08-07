@@ -2,7 +2,9 @@ using FC.Codeflix.Catalog.Application.UseCases.Category.Common;
 using FC.Codeflix.Catalog.Application.UseCases.Category.Create;
 using FC.Codeflix.Catalog.Application.UseCases.Category.Delete;
 using FC.Codeflix.Catalog.Application.UseCases.Category.Get;
+using FC.Codeflix.Catalog.Application.UseCases.Category.List;
 using FC.Codeflix.Catalog.Application.UseCases.Category.Update;
+using FC.Codeflix.Catalog.Domain.SeedWork.SearchableRepository;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -59,5 +61,42 @@ public class CategoriesController : ControllerBase
         var output = await _mediator.Send(input, cancellationToken);
 
         return Ok(output);
+    }
+
+    [HttpGet]
+    [ProducesResponseType(typeof(ListCategoriesOutput), StatusCodes.Status200OK)]
+    public async Task<IActionResult> List(CancellationToken cancellationToken, [FromQuery] int? page = null, [FromQuery] int? perPage = null, [FromQuery] string? search = null, [FromQuery] string? sort = null, [FromQuery] SearchOrder? dir = null)
+    {
+        var input = new ListCategoriesInput();
+
+        BuildListCategoriesInput(page, perPage, search, sort, dir, input);
+
+        var output = await _mediator.Send(input, cancellationToken);
+
+        return Ok(output);
+    }
+
+    private static void BuildListCategoriesInput(int? page, int? perPage, string? search, string? sort, SearchOrder? dir, ListCategoriesInput input)
+    {
+        if (page.HasValue)
+        {
+            input.Page = page.Value;
+        }
+        if (perPage.HasValue)
+        {
+            input.PerPage = perPage.Value;
+        }
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            input.Search = search;
+        }
+        if (!string.IsNullOrWhiteSpace(sort))
+        {
+            input.Sort = sort;
+        }
+        if (dir.HasValue)
+        {
+            input.Dir = dir.Value;
+        }
     }
 }

@@ -2,6 +2,8 @@ using Bogus;
 using FC.Codeflix.Catalog.Infra.Data.EF;
 using Microsoft.EntityFrameworkCore;
 
+[assembly: CollectionBehavior(DisableTestParallelization = true, MaxParallelThreads = 1)]
+
 namespace FC.Codeflix.Catalog.EndToEndTests.Base;
 
 public class BaseFixture
@@ -27,5 +29,12 @@ public class BaseFixture
                 .Options
         );
         return context;
+    }
+
+    public void DisposeDbContext()
+    {
+        var context = CreateDbContext();
+        context.Database.EnsureDeleted();
+        context.Database.EnsureCreated();
     }
 }

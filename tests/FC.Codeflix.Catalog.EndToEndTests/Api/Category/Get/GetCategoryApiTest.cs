@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FC.Codeflix.Catalog.EndToEndTests.Api.Category.Get;
 
 [Collection(nameof(GetCategoryApiTestFixture))]
-public class GetCategoryApiTest
+public class GetCategoryApiTest : IDisposable
 {
     private readonly GetCategoryApiTestFixture _fixture;
 
@@ -52,11 +52,16 @@ public class GetCategoryApiTest
 
         // Then
         response!.StatusCode.Should().Be(HttpStatusCode.NotFound);
-        
+
         output.Should().NotBeNull();
         output.Should().NotBeNull();
         output!.Status.Should().Be(StatusCodes.Status404NotFound);
         output.Type.Should().Be("NotFound");
         output.Title.Should().Be("Not Found");
+    }
+    
+    public void Dispose()
+    {
+        _fixture.DisposeDbContext();
     }
 }
